@@ -123,6 +123,7 @@ def logout():
 	return redirect(url_for('home'))
 
 @app.route('/avatar/', methods=['GET', 'POST'])
+@login_required
 def avatar():
 	if request.method == 'POST':
 		if 'file' in request.files and request.files['file'].filename.split('.')[-1] in ALLOWED_EXTENSIONS:
