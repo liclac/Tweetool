@@ -1,4 +1,5 @@
 import os
+from functools import wraps
 from flask import Flask, g, request, session
 from flask import url_for, render_template, redirect, jsonify, flash
 from werkzeug import secure_filename
@@ -66,6 +67,8 @@ def login_required(f):
 def check_login():
 	if 'user_access_token' and 'user_access_token_secret' in session:
 		g.user = User().load()
+	else:
+		g.user = None
 
 @app.route('/')
 def home():
