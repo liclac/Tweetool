@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Upload an Avatar{% endblock %}
+{% block content %}
+	<div class="row-fluid">
+		<p class="lead">Upload an Avatar, without the quality loss.</p>
+		<hr />
+	<div class="row-fluid">
+		<div class="span4">
+			<h4>Full Resolution</h4>
+			<p>Twitter's site compresses your images.</p><p>This doesn't.</p>
+		</div>
+		<div class="span4">
+			<h4>No Compression</h4>
+			<p>Twitter's site gives you avatars compression artifacts.</p><p>This doesn't.</p>
+		</div>
+		<div class="span4">
+			<h4>Animated GIFs</h4>
+			<p>Twitter's site removes the animation from animated GIFs.</p><p>This doesn't.</p>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<hr />
+		<p class="muted center">Twitter's site does all this in the frontend. Uploads via the API are unmangled.</p>
+		<hr />
+	</div>
+	<div class="row-fluid">
+		<form action="." method="POST" enctype="multipart/form-data" id="fieldform">
+			<input type="file" name="file" id="file" style="display:none;" />
+		</form>
+		<a id="button" class="btn btn-primary btn-large span12" onclick="$('#file').click();">
+			<i class="icon-upload icon-white"></i> Choose Image
+		</a>
+	</div>
+{% endblock %}
+{% block body_after %}
+<script type="text/javascript">
+$('#file').change(function() {
+	$('#button').html('Uploading...')
+	$('form:first').submit()
+})
+</script>
+{% endblock %}
